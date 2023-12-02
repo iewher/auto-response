@@ -2,12 +2,24 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 
 const response = async () => {
+  const logo = `                                                                      
+   ###    ##     ## ########  #######          ########  ########  ######  ########   #######  ##    ##  ######  ######## 
+  ## ##   ##     ##    ##    ##     ##         ##     ## ##       ##    ## ##     ## ##     ## ###   ## ##    ## ##       
+ ##   ##  ##     ##    ##    ##     ##         ##     ## ##       ##       ##     ## ##     ## ####  ## ##       ##       
+##     ## ##     ##    ##    ##     ## ####### ########  ######    ######  ########  ##     ## ## ## ##  ######  ######   
+######### ##     ##    ##    ##     ##         ##   ##   ##             ## ##        ##     ## ##  ####       ## ##       
+##     ## ##     ##    ##    ##     ##         ##    ##  ##       ##    ## ##        ##     ## ##   ### ##    ## ##       
+##     ##  #######     ##     #######          ##     ## ########  ######  ##         #######  ##    ##  ######  ######## 
+  `;
+
+  console.log(logo);
+  console.log("Скрипт запущен");
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
-  await page.goto("https://hh.ru/");
+  await page.goto("https://hh.ru/", { waitUntil: "domcontentloaded" });
 
-  await page.waitForNavigation({ waitUntil: "domcontentloaded" });
+  // await page.waitForNavigation({ waitUntil: "domcontentloaded" });
 
   await page.waitForSelector(".supernova-button");
 
