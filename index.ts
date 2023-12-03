@@ -17,23 +17,14 @@ const response = async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
-  await page.goto("https://hh.ru/", { waitUntil: "domcontentloaded" });
+  //Входим в аккаунт
 
-  // await page.waitForNavigation({ waitUntil: "domcontentloaded" });
+  await page.goto(
+    "https://perm.hh.ru/account/login?backurl=%2Fsearch%2Fvacancy%3Ftext%3Dreact%26area%3D72&hhtmFrom=vacancy_search_list",
+    { waitUntil: "domcontentloaded" }
+  );
 
-  await page.waitForSelector(".supernova-button");
-
-  const login_button = await page.evaluate((sel) => {
-    let elements = Array.from(document.querySelectorAll(sel));
-    let responses = elements.map((element) => {
-      return element.innerText;
-    });
-    return responses;
-  }, ".supernova-navi-item.supernova-navi-item_lvl-2.supernova-navi-item_button.supernova-navi-item_no-mobile.supernova-navi-item_dashboard");
-
-  console.log(login_button);
-
-  await browser.close();
+  // await browser.close();
 };
 
 response();
