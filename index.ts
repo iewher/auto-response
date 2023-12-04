@@ -24,6 +24,22 @@ const response = async () => {
     { waitUntil: "domcontentloaded" }
   );
 
+  await page.waitForSelector('input[name="login"]');
+
+  const number = "+79091163129";
+
+  await page.type('input[name="login"]', number);
+
+  await page.keyboard.press("Enter");
+
+  await page.waitForSelector("#a11y-search-input");
+
+  // Ищем элемент по айди и вводим значение "react"
+  await page.type("#a11y-search-input", "react");
+
+  // Допустим, после ввода слова "react", нажмем Enter
+  await page.keyboard.press("Enter");
+
   // await browser.close();
 };
 
